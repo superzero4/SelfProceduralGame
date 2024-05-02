@@ -1,12 +1,13 @@
 {
   "dependencies": {
     "com.github.asus4.googleapis-unity": {
-      "version": "file:GoogleApis",
+      "version": "https://github.com/asus4/google-gemini-unity.git?path=Packages/GoogleApis",
       "depth": 0,
-      "source": "embedded",
+      "source": "git",
       "dependencies": {
         "com.unity.nuget.newtonsoft-json": "3.2.1"
-      }
+      },
+      "hash": "b097c128c1c9d5901cbc7d09aa0fb11438740422"
     },
     "com.lmnt.unity": {
       "version": "file:com.lmnt.unity",
