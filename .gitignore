@@ -71,3 +71,5 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 .env
+Assets/Resources/GoogleApiSettings.asset
+Assets/Resources/GoogleApiSettings.asset.meta
