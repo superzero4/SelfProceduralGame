@@ -4,7 +4,68 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e7626fb0-2a3a-42ed-98bd-761815fa43f4" name="Changes" comment="" />
+    <list default="true" id="e7626fb0-2a3a-42ed-98bd-761815fa43f4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SelfProceduralGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SelfProceduralGame/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/Api.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/Api.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/Extensions.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/Extensions/AsyncOperationExtensions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/Extensions/AsyncOperationExtensions.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/Extensions/JsonExtensions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/Extensions/JsonExtensions.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/Extensions/WavConverter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/Extensions/WavConverter.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/GenerativeLanguage.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/GenerativeLanguage/DownloadHandlerJsonStream.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/GenerativeLanguage/DownloadHandlerJsonStream.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/GenerativeLanguage/FunctionCallExtensions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/GenerativeLanguage/FunctionCallExtensions.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/GenerativeLanguage/GenerativeAIClient.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/GenerativeLanguage/GenerativeAIClient.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/GenerativeLanguage/GenerativeModel.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/GenerativeLanguage/GenerativeModel.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/GenerativeLanguage/MarkdownToTMPRichText.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/GenerativeLanguage/MarkdownToTMPRichText.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/GenerativeLanguage/TextureExtensions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/GenerativeLanguage/TextureExtensions.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/GenerativeLanguage/Types.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/GenerativeLanguage/Types/Candidate.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/GenerativeLanguage/Types/Candidate.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/GenerativeLanguage/Types/CitationMetadata.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/GenerativeLanguage/Types/CitationMetadata.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/GenerativeLanguage/Types/Content.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/GenerativeLanguage/Types/Content.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/GenerativeLanguage/Types/GenerateContent.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/GenerativeLanguage/Types/GenerateContent.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/GenerativeLanguage/Types/HarmCategory.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/GenerativeLanguage/Types/HarmCategory.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/GenerativeLanguage/Types/SafetyRating.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/GenerativeLanguage/Types/SafetyRating.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/GenerativeLanguage/Types/Tool.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/GenerativeLanguage/Types/Tool.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/GoogleApiSettings.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/GoogleApiSettings.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/GoogleApis.asmdef" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/GoogleApis.asmdef.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/TTS.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/TTS/TextSynthesizeExtensions.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/TTS/TextSynthesizeExtensions.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/TTS/TextToSpeech.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/TTS/TextToSpeech.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/TTS/Types.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/TTS/Types/SsmlVoiceGender.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/TTS/Types/SsmlVoiceGender.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/TTS/Types/TextSynthesize.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/TTS/Types/TextSynthesize.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/TTS/Types/Voice.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/Runtime/TTS/Types/Voice.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/GoogleApis/package.json.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,6 +75,8 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/SubmitToChat.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.github.asus4.googleapis-unity@b097c128c1/Runtime/GoogleApiSettings.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/EventInterfaces.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -25,25 +88,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;rider.external.source.directories&quot;: [
-      &quot;C:\\Users\\flore\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache&quot;,
-      &quot;C:\\Users\\flore\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache&quot;,
-      &quot;C:\\Users\\flore\\AppData\\Local\\Symbols\\src&quot;
+  "keyToStringList": {
+    "rider.external.source.directories": [
+      "C:\\Users\\flore\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache",
+      "C:\\Users\\flore\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache",
+      "C:\\Users\\flore\\AppData\\Local\\Symbols\\src"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="F:\Logiciels\Unity\2022.3.10f1\Editor\Unity.exe" />
