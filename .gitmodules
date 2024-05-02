@@ -1,0 +1,3 @@
+[submodule "Assets/ThirdParty/google-gemini-unity"]
+	path = Assets/ThirdParty/google-gemini-unity
+	url = https://github.com/asus4/google-gemini-unity.git
