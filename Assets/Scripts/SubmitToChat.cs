@@ -25,6 +25,7 @@ public class SubmitToChat : MonoBehaviour
 
     private async void ToChat(string s)
     {
-        await _chat.SendRequest(s,_prePrompt);
+        string result = await _chat.SendRequest(s,_prePrompt);
+        Debug.LogWarning($"Result : {result}");
     }
 }
