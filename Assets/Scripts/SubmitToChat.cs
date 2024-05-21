@@ -1,21 +1,18 @@
-﻿using System;
-using System.Collections;
-using GoogleApis.Example;
-using GoogleApis.GenerativeLanguage;
-using Unity.Barracuda;
+﻿using GoogleApis.Example;
+using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
-[RequireComponent(typeof(TMPro.TMP_InputField))]
+[RequireComponent(typeof(TMP_InputField))]
 public class SubmitToChat : MonoBehaviour
 {
     [SerializeField] private string _prePrompt;
-    private TMPro.TMP_InputField _submit;
+    [SerializeField] private TMP_Text output;
+    private TMP_InputField _submit;
     private static BasicChatExample _chat;
 
     private void Awake()
     {
-        _submit = GetComponent<TMPro.TMP_InputField>();
+        _submit = GetComponent<TMP_InputField>();
         _submit.onSubmit.AddListener(ToChat);
         if (_chat == null)
         {
@@ -26,6 +23,7 @@ public class SubmitToChat : MonoBehaviour
     private async void ToChat(string s)
     {
         string result = await _chat.SendRequest(s,_prePrompt);
+        output.text = result;
         Debug.LogWarning($"Result : {result}");
     }
 }
