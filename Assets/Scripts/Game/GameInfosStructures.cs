@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Unity.Collections;
+using UnityEngine.Serialization;
 
 namespace Game
 {
@@ -52,7 +53,7 @@ namespace Game
     [System.Serializable]
     public struct VisualData
     {
-        public Texture2D texture;
+        [FormerlySerializedAs("texture")] public Sprite sprite;
         public string fallbackAsciiArt;
     }
 
@@ -64,7 +65,7 @@ namespace Game
         [NonSerialized] public Building[] dependenciesReferences;
 
         public string[] dependencies;
-        VisualData visualData;
+        public VisualData visualData;
 
         public static Unit Sample()
         {
@@ -81,7 +82,7 @@ namespace Game
         [SerializeField,ReadOnly] //For editor view
         public Building[] dependenciesReferences;
         public string[] dependencies;
-        VisualData visualData;
+        public VisualData visualData;
 
         public Building(Building toCopy)
         {

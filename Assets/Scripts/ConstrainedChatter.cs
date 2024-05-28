@@ -4,6 +4,7 @@ using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Game;
+using UnityEngine.Events;
 
 public class ConstrainedChatter : ChatInteractor
 {
@@ -24,15 +25,17 @@ public class ConstrainedChatter : ChatInteractor
     [Header("Last")]
     AnswerHistory.HistoryEntry _last;
     public FinalData LastData => _last.data;
+    public FinalData ReadHistory(int index) => _history.Get(index).data;
     [SerializeField,InlineEditor] private AnswerHistory _history;
-
+    //Always accessible publicy through LastData and ReadHistory(0)
+    public UnityEvent<FinalData> newAnswerTreated = new();
     protected override void OnAnswerReceived(string result)
     {
         string json = ExtractJson(result);
         _last = new AnswerHistory.HistoryEntry(_theme,json, result, Game.FinalData.FromJson(json));
         _history.Add(_last);
+        newAnswerTreated.Invoke(_last.data);
     }
-
     [Button]
     private string TestExtractJson(int history = 0)
     {
@@ -82,6 +85,6 @@ public class ConstrainedChatter : ChatInteractor
     {
         if(!ThemeOk(theme))
             Debug.LogError("Theme isn't considered valid, check conditions for it, execution isn't guaranteed to be successful.");
-        SubmitToChat(additionnalFreeInformations,BuildPrompt(theme, _nbUnit, _nbUnit));
+        SubmitToChat("Can you do this for me :\n"+additionnalFreeInformations,BuildPrompt(theme, _nbUnit, _nbBuilding));
     }
 }
