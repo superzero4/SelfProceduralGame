@@ -18,15 +18,19 @@ public abstract class ChatInteractor : MonoBehaviour
     {
         SubmitToChat(s, _prePrompt);
     }
-    protected async void SubmitToChat(string s,string prePrompt)
+
+    protected async void SubmitToChat(string s, string prePrompt)
     {
-        string result = await _chat.SendRequest(s,prePrompt);
+        string result = await _chat.SendRequest(s, prePrompt);
         Debug.LogWarning($"Result : {result}");
         OnAnswerReceived(result);
     }
-    protected string ExtractSubString(string beginningFlag,string endFlag,string origin){
-        int index = origin.IndexOf(beginningFlag)+beginningFlag.Length-1;
+
+    protected string ExtractSubString(string beginningFlag, string endFlag, string origin, bool keepLastBegin = true,
+        bool keepFirstEnd = true)
+    {
+        int index = origin.IndexOf(beginningFlag) + beginningFlag.Length - (keepLastBegin ? 1 : 0);
         int endindex = origin.LastIndexOf(endFlag);
-        return origin.Substring(index,endindex-index+1);
+        return origin.Substring(index, endindex - index + (keepFirstEnd ? 1 : 0));
     }
 }

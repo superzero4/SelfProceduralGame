@@ -6,11 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e7626fb0-2a3a-42ed-98bd-761815fa43f4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SelfProceduralGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SelfProceduralGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AssetStore/TopDownEngine/ThirdParty/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AssetStore/TopDownEngine/ThirdParty/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Entry.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Entry.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ChatInteractor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ChatInteractor.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/ConstrainedChatter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ConstrainedChatter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game/GameInfosStructures.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game/GameInfosStructures.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Helpers/AnswerHistory.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Helpers/AnswerHistory.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,27 +55,27 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Attach to Unity Editor.Attach to Unity Editor.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Attach to Unity Editor.Attach to Unity Editor.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "C:\\Users\\flore\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache",
-      "C:\\Users\\flore\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache",
-      "C:\\Users\\flore\\AppData\\Local\\Symbols\\src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\flore\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\flore\\AppData\\Roaming\\JetBrains\\Rider2024.1\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\flore\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="F:\Logiciels\Unity\2022.3.10f1\Editor\Unity.exe" />
@@ -105,10 +103,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="9160">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="13240">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="9160" />
+      <option name="pid" value="13240" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -129,7 +127,9 @@
       <workItem from="1714677615630" duration="4781000" />
       <workItem from="1716289557753" duration="3674000" />
       <workItem from="1716669628370" duration="7727000" />
-      <workItem from="1716927047302" duration="7596000" />
+      <workItem from="1716927047302" duration="8339000" />
+      <workItem from="1717003942014" duration="2659000" />
+      <workItem from="1717006664041" duration="1320000" />
     </task>
     <servers />
   </component>
@@ -151,17 +151,17 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Assets/Scripts/UI/Tile.cs</url>
-          <line>19</line>
-          <properties documentPath="E:\Unity Projects\SelfProceduralGame\Assets\Scripts\UI\Tile.cs" containingFunctionPresentation="Method 'SetVisuals'">
+          <url>file://$PROJECT_DIR$/Assets/Scripts/ChatInteractor.cs</url>
+          <line>33</line>
+          <properties documentPath="E:\Unity Projects\SelfProceduralGame\Assets\Scripts\ChatInteractor.cs" containingFunctionPresentation="Method 'ExtractSubString'">
             <startOffsets>
-              <option value="600" />
+              <option value="1020" />
             </startOffsets>
             <endOffsets>
-              <option value="649" />
+              <option value="1094" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="2" />
+          <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
