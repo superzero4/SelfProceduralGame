@@ -159,7 +159,7 @@ public class ConstrainedChatter : ChatInteractor
     }
 
     /// <summary>
-    /// The "in struct, in memory, codly usable" result will be under LastData property, check it after message has been received correctly
+    /// The "in struct, in memory, codly usable"fill result will be under LastData property, check it after message has been received correctly
     /// </summary>
     /// <param name="theme"></param>
     /// <param name="additionnalFreeInformations"></param>

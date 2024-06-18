@@ -15,9 +15,10 @@ public class Tile : MonoBehaviour
     {
         if (forceActive)
             gameObject.SetActive(true);
-        if (visualInformation.visuals.sprite != null)
+        if (false && visualInformation.visuals.sprite != null)
         {
-            _image.sprite = visualInformation.visuals.sprite;
+            if (_image.sprite != null)
+                _image.sprite = visualInformation.visuals.sprite;
             _replacementText.text = "";
         }
         else
@@ -25,6 +26,7 @@ public class Tile : MonoBehaviour
             _replacementText.text = visualInformation.visuals.fallbackAsciiArt;
             _image.sprite = null;
         } //Works also as a safe, even if text is empty
+
         _name.text = visualInformation.name;
         _description.text = visualInformation.description;
         _border.color = visualInformation.name.ToConstantRGB();
