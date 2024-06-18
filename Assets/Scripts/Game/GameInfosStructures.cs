@@ -15,17 +15,21 @@ namespace Game
 
         public static FinalData FromJson(string json)
         {
-            var tmp = JsonUtility.FromJson<FinalData>(json);
+            FinalData tmp = JsonUtility.FromJson<FinalData>(json);
             for (var i = 0; i < tmp.buildings.Length; i++)
             {
                 var building = tmp.buildings[i];
                 building.dependenciesReferences = tmp.BuildDependenciesReferences(building.dependencies);
+                //In case json interpreted a sprite someway ?
+                building.visualData.sprite = null;
                 tmp.buildings[i] = building;
             }
             for (var i = 0; i < tmp.units.Length; i++)
             {
                 var unit = tmp.units[i];
                 unit.dependenciesReferences = tmp.BuildDependenciesReferences(unit.dependencies);
+                //In case json interpreted a sprite someway ?
+                unit.visualData.sprite = null;
                 tmp.units[i] = unit;
             }
             return tmp;

@@ -15,7 +15,7 @@ public class Tile : MonoBehaviour
     {
         if (forceActive)
             gameObject.SetActive(true);
-        if (false && visualInformation.visuals.sprite != null)
+        if (visualInformation.visuals.sprite != null)
         {
             if (_image.sprite != null)
                 _image.sprite = visualInformation.visuals.sprite;

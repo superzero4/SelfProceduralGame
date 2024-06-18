@@ -18,12 +18,7 @@ public class UIController : MonoBehaviour
         InitUIUsingHistory();
         _chat.newAnswerTreated.AddListener(UpdateUI);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
+    
     [Button]
     void InitUIUsingHistory(int index = 0)
     {

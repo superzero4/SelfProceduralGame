@@ -6,13 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="e7626fb0-2a3a-42ed-98bd-761815fa43f4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SelfProceduralGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SelfProceduralGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Sirenix/Demos/Custom Attribute Processors.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Sirenix/Demos/Custom Drawers.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Sirenix/Demos/Editor Windows.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Sirenix/Demos/Sample - RPG Editor.unitypackage.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Entry.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Entry.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/ConstrainedChatter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ConstrainedChatter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/Tile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/Tile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game/GameInfosStructures.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game/GameInfosStructures.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Helpers/AnswerHistory.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Helpers/AnswerHistory.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Helpers/AnswerHistory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Helpers/AnswerHistory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
