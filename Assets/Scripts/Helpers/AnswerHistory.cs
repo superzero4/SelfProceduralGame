@@ -33,7 +33,7 @@ public class AnswerHistory : ScriptableObject
         public FinalData data;
 
         [SerializeField] public string info;
-
+        
         [SerializeField, TextArea(3, 20)] public string json;
 
         [SerializeField, TextArea(3, 10)] public string raw;
@@ -43,6 +43,27 @@ public class AnswerHistory : ScriptableObject
             json = this.json;
             raw = this.raw;
             data = this.data;
+        }
+    }
+    [Button]
+    void ClearAllSprites()
+    {
+        Debug.LogError("Too dangerous, would lose all sprites, only when error");
+        return;
+        foreach (var h in _history)
+        {
+            for (var index = 0; index < h.data.buildings.Length; index++)
+            {
+                var bu = h.data.buildings[index];
+                bu.visualData.sprite = null;
+                h.data.buildings[index] = bu;
+            }
+            for (var index = 0; index < h.data.units.Length; index++)
+            {
+                var un = h.data.units[index];
+                un.visualData.sprite = null;
+                h.data.units[index] = un;
+            }
         }
     }
 }
