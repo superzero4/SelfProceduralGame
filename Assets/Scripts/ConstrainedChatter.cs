@@ -12,29 +12,34 @@ public class ConstrainedChatter : ChatInteractor
     {
         return _theme.Length < 30 && _theme.Trim(' ').Count(c => c == ' ') <= 2;
     }
-
+    [SerializeField] private CrossSceneInfo _crossSceneInfo;
     [SerializeField,
      ValidateInput(nameof(ThemeOk),
          "Consider shortening number of words and total length of them and adding more details in additional chatting, to avoid too many informations passed as system prompts",
          InfoMessageType.Error)]
     string _theme = "Cowboy";
 
-    [SerializeField] private string _additionnalChatting =
-        "I want my game to have a focus on vegetation, animals, nature and the wild west.";
-
-    [SerializeField, Range(1, 100)] private int _nbUnit = 10;
-    [SerializeField, Range(1, 100)] private int _nbBuilding = 20;
+    [SerializeField] private string _additionnalChatting;
+    
+    [SerializeField, Range(1, 100)] public int _nbUnit = 10;
+    [SerializeField, Range(1, 100)] public int _nbBuilding = 20;
     [SerializeField, Range(1, 1000)] private int _asciiArtResolution = 50;
     AnswerHistory.HistoryEntry _last => _history.Get(0);
     public FinalData LastData => ReadHistory(0);
     public FinalData ReadHistory(int index) => _history.Get(index).data;
-
+    public AnswerHistory.HistoryEntry Random() => _history.Get(UnityEngine.Random.Range(0, _history.Count));
     [SerializeField, InlineEditor] private AnswerHistory _history;
 
     //Always accessible publicy through LastData and ReadHistory(0)
     public UnityEvent<FinalData> newAnswerTreated = new();
+    public UnityEvent<FinalData> allAnswerTreated = new();
     [SerializeField, ReadOnly] private int currentChatStep = 0;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        allAnswerTreated.AddListener(data => _crossSceneInfo.data = data);
+    }
     protected override void OnAnswerReceived(string result)
     {
         if (currentChatStep == 0)
@@ -56,7 +61,10 @@ public class ConstrainedChatter : ChatInteractor
                 default:
                     if (arr < 0) throw new System.Exception("Error in distributed index calculation");
                     else throw new NotSupportedException();
-                case -1: return; //We finished
+                case -1: 
+                    newAnswerTreated.Invoke(_last.data);
+                    allAnswerTreated.Invoke(_last.data);
+                    return; //We finished
                 case 0:
                     _last.data.buildings[ind].visualData.fallbackAsciiArt = visual;
                     break;
@@ -71,7 +79,11 @@ public class ConstrainedChatter : ChatInteractor
                 ind = 0;
                 arr++;
                 if (arr >= lengths.Length)
+                {
+                    newAnswerTreated.Invoke(_last.data);
+                    allAnswerTreated.Invoke(_last.data);
                     return; //We are done
+                }
             }
 
             var nextName = "";
@@ -82,6 +94,7 @@ public class ConstrainedChatter : ChatInteractor
                     else throw new NotSupportedException();
                 case -1:
                     newAnswerTreated.Invoke(_last.data);
+                    allAnswerTreated.Invoke(_last.data);
                     return; //We finished
                 case 0:
                     nextName = _last.data.buildings[ind].name;

@@ -19,7 +19,7 @@ public class AnswerHistory : ScriptableObject
     }
 
     public HistoryEntry Get(int index) => _history[index];
-
+    public int Count => _history.Count;
     [Serializable]
     public struct HistoryEntry
     {

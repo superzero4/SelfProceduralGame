@@ -3,10 +3,11 @@ using UnityEngine;
 
 public abstract class ChatInteractor : MonoBehaviour
 {
+    
     [SerializeField] private string _prePrompt;
-    private static BasicChatExample _chat;
+    static BasicChatExample _chat;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         if (_chat == null)
             _chat = gameObject.AddComponent<BasicChatExample>();
