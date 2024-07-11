@@ -24,6 +24,7 @@ namespace Game
                 building.visualData.sprite = null;
                 tmp.buildings[i] = building;
             }
+
             for (var i = 0; i < tmp.units.Length; i++)
             {
                 var unit = tmp.units[i];
@@ -32,6 +33,7 @@ namespace Game
                 unit.visualData.sprite = null;
                 tmp.units[i] = unit;
             }
+
             return tmp;
         }
 
@@ -48,8 +50,8 @@ namespace Game
         {
             return new FinalData()
             {
-                buildings = new [] { Building.Sample(), Building.Sample() },
-                units = new [] { Unit.Sample(), Unit.Sample(), Unit.Sample() }
+                buildings = new[] { Building.Sample(), Building.Sample() },
+                units = new[] { Unit.Sample(), Unit.Sample(), Unit.Sample() }
             };
         }
     }
@@ -58,22 +60,32 @@ namespace Game
     public struct VisualData
     {
         [FormerlySerializedAs("texture")] public Sprite sprite;
+        [TextArea(3,20)]
         public string fallbackAsciiArt;
     }
 
-    [Serializable]
+    [System.Serializable]
     public struct Unit
     {
         public string name;
         public string description;
         [NonSerialized] public Building[] dependenciesReferences;
-
         public string[] dependencies;
+
+        public float maxHealth;
+        public float selfHealFactor;
+        public float strength;
+        public float defence;
+
         public VisualData visualData;
 
         public static Unit Sample()
         {
-            return new Unit { dependencies = Building.SampleDependency() };
+            return new Unit()
+            {
+                dependencies = Building.SampleDependency(), strength = 10.0f, defence = 10.0f, maxHealth = 100.0f,
+                selfHealFactor = 10.0f
+            };
         }
     }
 
@@ -82,10 +94,17 @@ namespace Game
     {
         public string name;
         public string description;
+
         [NonSerialized] //For json
-        [ReadOnly] //For editor view
+        [ReadOnly]
+        //For editor view
         public Building[] dependenciesReferences;
+
         public string[] dependencies;
+        public float spawnDelay;
+        public float maxHealth;
+        public float selfHealFactor;
+        public float defence;
         public VisualData visualData;
 
         public Building(Building toCopy)
@@ -95,18 +114,26 @@ namespace Game
             dependencies = toCopy.dependencies;
             visualData = toCopy.visualData;
             dependenciesReferences = null;
+            spawnDelay = toCopy.spawnDelay;
+            maxHealth = toCopy.maxHealth;
+            selfHealFactor = toCopy.selfHealFactor;
+            defence = toCopy.defence;
             //We don't copy references because it's struct we don't have guarantee they won't change, we just keep name in case we need to rebuild them
         }
 
         public static Building Sample()
         {
-            return new Building { dependencies = SampleDependency() };
+            return new Building()
+            {
+                dependencies = SampleDependency(), spawnDelay = 0.01f, defence = 10.0f, maxHealth = 100.0f,
+                selfHealFactor = 10.0f
+            };
         }
 
         public static string[] SampleDependency()
         {
             //Watch out for stack overflow calling a new defaultly initialized Building and not another sample as dependency
-            return new [] { "nameOfDependency1", "nameOfDependency2" };
+            return new[] { "nameOfDependency1", "nameOfDependency2" };
         }
     }
 }

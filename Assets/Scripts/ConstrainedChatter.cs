@@ -149,9 +149,10 @@ public class ConstrainedChatter : ChatInteractor
 
     private static string BuildPrompt(string theme, int nbUnit, int nbBuilding)
     {
+        
         var sample = JsonUtility.ToJson(FinalData.Sample());
         var baseMessage =
-            $"I am building a Real Time Strategy video game, the theme is : {theme}, i want {nbUnit} units, and {nbBuilding} buildings with names and description.\n Both the units and the buildings may depends on some other buildings, identified by they name.\n" +
+            $"I am building a Real Time Strategy video game, the theme is : {theme}, i want {nbUnit} units, and {nbBuilding} buildings with names, description and their statistics (which you can find detailled in the json example).\n Both the units and the buildings may depends on some other buildings, identified by they name.\n" +
             $"can you generate me a JSON";
         return baseMessage + ", following this exact JSON structure : \n" + sample;
     }
@@ -176,6 +177,8 @@ public class ConstrainedChatter : ChatInteractor
     /// <param name="additionnalFreeInformations"></param>
     public void SendConstrainedPrompt(string theme, string additionnalFreeInformations)
     {
+        _theme = theme;
+        _additionnalChatting = additionnalFreeInformations;
         currentChatStep = 0;
         if (!ThemeOk(theme))
             Debug.LogError(
