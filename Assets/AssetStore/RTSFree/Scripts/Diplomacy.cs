@@ -9,7 +9,7 @@ namespace RTSToolkitFree
 
         [HideInInspector] public int numberNations;
         public List<List<int>> relations = new List<List<int>>();
-        public int playerNation = 0;
+        public int playerNation;
 
         public int defaultRelation = 1;
 

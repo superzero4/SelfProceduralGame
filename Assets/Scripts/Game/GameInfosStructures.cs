@@ -48,20 +48,20 @@ namespace Game
         {
             return new FinalData()
             {
-                buildings = new Building[2] { Building.Sample(), Building.Sample() },
-                units = new Unit[3] { Unit.Sample(), Unit.Sample(), Unit.Sample() }
+                buildings = new [] { Building.Sample(), Building.Sample() },
+                units = new [] { Unit.Sample(), Unit.Sample(), Unit.Sample() }
             };
         }
     }
 
-    [System.Serializable]
+    [Serializable]
     public struct VisualData
     {
         [FormerlySerializedAs("texture")] public Sprite sprite;
         public string fallbackAsciiArt;
     }
 
-    [System.Serializable]
+    [Serializable]
     public struct Unit
     {
         public string name;
@@ -73,17 +73,17 @@ namespace Game
 
         public static Unit Sample()
         {
-            return new Unit() { dependencies = Building.SampleDependency() };
+            return new Unit { dependencies = Building.SampleDependency() };
         }
     }
 
-    [System.Serializable]
+    [Serializable]
     public struct Building
     {
         public string name;
         public string description;
         [NonSerialized] //For json
-        [SerializeField,ReadOnly] //For editor view
+        [ReadOnly] //For editor view
         public Building[] dependenciesReferences;
         public string[] dependencies;
         public VisualData visualData;
@@ -100,13 +100,13 @@ namespace Game
 
         public static Building Sample()
         {
-            return new Building() { dependencies = SampleDependency() };
+            return new Building { dependencies = SampleDependency() };
         }
 
         public static string[] SampleDependency()
         {
             //Watch out for stack overflow calling a new defaultly initialized Building and not another sample as dependency
-            return new string[2] { "nameOfDependency1", "nameOfDependency2" };
+            return new [] { "nameOfDependency1", "nameOfDependency2" };
         }
     }
 }

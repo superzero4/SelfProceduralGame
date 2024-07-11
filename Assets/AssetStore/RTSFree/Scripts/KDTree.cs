@@ -118,20 +118,18 @@ namespace RTSToolkitFree
 
                 return midIndex;
             }
-            else
+
+            if (a > m)
             {
-                if (a > m)
-                {
-                    return stIndex;
-                }
-
-                if (m > b)
-                {
-                    return enIndex;
-                }
-
-                return midIndex;
+                return stIndex;
             }
+
+            if (m > b)
+            {
+                return enIndex;
+            }
+
+            return midIndex;
         }
 
         //	Find a new pivot index from the range by splitting the points that fall either side

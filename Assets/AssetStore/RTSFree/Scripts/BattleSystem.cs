@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
 
 // BSystem is core component for simulating RTS battles
 // It has 6 phases for attack and gets all different game objects parameters inside.
@@ -23,7 +24,7 @@ namespace RTSToolkitFree
         List<float> targetRefreshTimes = new List<float>();
         List<KDTree> targetKD = new List<KDTree>();
 
-        public int randomSeed = 0;
+        public int randomSeed;
 
         public float searchUpdateFraction = 0.1f;
         public float retargetUpdateFraction = 0.01f;
@@ -41,7 +42,7 @@ namespace RTSToolkitFree
 
         void Start()
         {
-            UnityEngine.AI.NavMesh.pathfindingIterationsPerFrame = 10000;
+            NavMesh.pathfindingIterationsPerFrame = 10000;
         }
 
         void Update()
@@ -84,8 +85,8 @@ namespace RTSToolkitFree
             return new Rect(Screen.width * 0.05f, Screen.height * height, 500f, 20f);
         }
 
-        int iSearchPhase = 0;
-        float fSearchPhase = 0f;
+        int iSearchPhase;
+        float fSearchPhase;
 
         // The main search method, which starts to search for nearest enemies neighbours and set them for attack
         // NN search works with kdtree.cs NN search class, implemented by A. Stark at 2009.
@@ -154,7 +155,6 @@ namespace RTSToolkitFree
                     )
                     {
                         targetUp.attackers.Add(up);
-                        targetUp.noAttackers = targetUp.attackers.Count;
                         up.target = targetUp;
                         up.isReady = false;
                         up.isApproaching = true;
@@ -163,8 +163,8 @@ namespace RTSToolkitFree
             }
         }
 
-        int iRetargetPhase = 0;
-        float fRetargetPhase = 0f;
+        int iRetargetPhase;
+        float fRetargetPhase;
 
         // Similar as SearchPhase but is used to retarget approachers to closer targets.
         public void RetargetPhase()
@@ -202,10 +202,7 @@ namespace RTSToolkitFree
                         if (newTargetDistanceSq < oldTargetDistanceSq)
                         {
                             up.target.attackers.Remove(up);
-                            up.target.noAttackers = up.target.attackers.Count;
-
                             targetUp.attackers.Add(up);
-                            targetUp.noAttackers = targetUp.attackers.Count;
                             up.target = targetUp;
                             up.isReady = false;
                             up.isApproaching = true;
@@ -215,8 +212,8 @@ namespace RTSToolkitFree
             }
         }
 
-        int iApproachPhase = 0;
-        float fApproachPhase = 0f;
+        int iApproachPhase;
+        float fApproachPhase;
 
         // this phase starting attackers to move towards their targets
         public void ApproachPhase()
@@ -243,10 +240,10 @@ namespace RTSToolkitFree
 
                     UnitPars targ = apprPars.target;
 
-                    UnityEngine.AI.NavMeshAgent apprNav = apprPars.GetComponent<UnityEngine.AI.NavMeshAgent>();
-                    UnityEngine.AI.NavMeshAgent targNav = targ.GetComponent<UnityEngine.AI.NavMeshAgent>();
+                    NavMeshAgent apprNav = apprPars.GetComponent<NavMeshAgent>();
+                    NavMeshAgent targNav = targ.GetComponent<NavMeshAgent>();
 
-                    if (targ.isApproachable == true)
+                    if (targ.isApproachable)
                     {
                         // stopping condition for NavMesh
 
@@ -272,7 +269,6 @@ namespace RTSToolkitFree
                                 if (apprPars.target != null)
                                 {
                                     apprPars.target.attackers.Remove(apprPars);
-                                    apprPars.target.noAttackers = apprPars.target.attackers.Count;
                                     apprPars.target = null;
                                 }
 
@@ -339,8 +335,8 @@ namespace RTSToolkitFree
             }
         }
 
-        int iAttackPhase = 0;
-        float fAttackPhase = 0f;
+        int iAttackPhase;
+        float fAttackPhase;
 
         // Attacking phase set attackers to attack their targets and cause damage when they already approached their targets
         public void AttackPhase()
@@ -366,8 +362,8 @@ namespace RTSToolkitFree
                 {
                     UnitPars targPars = attPars.target;
 
-                    UnityEngine.AI.NavMeshAgent attNav = attPars.GetComponent<UnityEngine.AI.NavMeshAgent>();
-                    UnityEngine.AI.NavMeshAgent targNav = targPars.GetComponent<UnityEngine.AI.NavMeshAgent>();
+                    NavMeshAgent attNav = attPars.GetComponent<NavMeshAgent>();
+                    NavMeshAgent targNav = targPars.GetComponent<NavMeshAgent>();
 
                     attNav.stoppingDistance = attNav.radius / (attPars.transform.localScale.x) + targNav.radius / (targPars.transform.localScale.x);
 
@@ -384,13 +380,12 @@ namespace RTSToolkitFree
                         attPars.isAttacking = false;
                     }
                     // if targets becomes immune, attacker is reset to start searching for new target 	
-                    else if (targPars.isImmune == true)
+                    else if (targPars.isImmune)
                     {
                         attPars.isAttacking = false;
                         attPars.isReady = true;
 
                         targPars.attackers.Remove(attPars);
-                        targPars.noAttackers = targPars.attackers.Count;
 
                         if (attPars.changeMaterial)
                         {
@@ -418,8 +413,8 @@ namespace RTSToolkitFree
             }
         }
 
-        int iSelfHealingPhase = 0;
-        float fSelfHealingPhase = 0f;
+        int iSelfHealingPhase;
+        float fSelfHealingPhase;
 
         // Self-Healing phase heals damaged units over time
         public void SelfHealingPhase(float deltaTime)
@@ -467,8 +462,8 @@ namespace RTSToolkitFree
             }
         }
 
-        int iDeathPhase = 0;
-        float fDeathPhase = 0f;
+        int iDeathPhase;
+        float fDeathPhase;
 
         // Death phase unset all unit activity and prepare to die
         public void DeathPhase()
@@ -498,7 +493,7 @@ namespace RTSToolkitFree
                         deadPars.isDying = false;
                         deadPars.isSinking = true;
 
-                        deadPars.GetComponent<UnityEngine.AI.NavMeshAgent>().enabled = false;
+                        deadPars.GetComponent<NavMeshAgent>().enabled = false;
                         sinks.Add(deadPars);
                         allUnits.Remove(deadPars);
 
@@ -529,7 +524,7 @@ namespace RTSToolkitFree
 
                         deadPars.transform.gameObject.tag = "Untagged";
 
-                        UnityEngine.AI.NavMeshAgent nma = deadPars.GetComponent<UnityEngine.AI.NavMeshAgent>();
+                        NavMeshAgent nma = deadPars.GetComponent<NavMeshAgent>();
                         nma.SetDestination(deadPars.transform.position);
                         nma.avoidancePriority = 0;
 
@@ -544,8 +539,8 @@ namespace RTSToolkitFree
             }
         }
 
-        int iSinkPhase = 0;
-        float fSinkPhase = 0f;
+        int iSinkPhase;
+        float fSinkPhase;
 
         // rotting or sink phase includes time before unit is destroyed: for example to perform rotting animation or sink object into the ground
         public void SinkPhase(float deltaTime)
@@ -591,8 +586,8 @@ namespace RTSToolkitFree
             }
         }
         
-        int iManualMover = 0;
-        float fManualMover = 0f;
+        int iManualMover;
+        float fManualMover;
 
         // ManualMover controls unit if it is selected and target is defined by player
         public void ManualMover()
@@ -644,7 +639,7 @@ namespace RTSToolkitFree
                         manualControl.prepareMoving = false;
                         manualControl.isMoving = true;
 
-                        up.GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(manualControl.manualDestination);
+                        up.GetComponent<NavMeshAgent>().SetDestination(manualControl.manualDestination);
                     }
                 }
             }
@@ -656,7 +651,7 @@ namespace RTSToolkitFree
             up.isAttacking = false;
             up.target = null;
 
-            up.GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(up.transform.position);
+            up.GetComponent<NavMeshAgent>().SetDestination(up.transform.position);
 
             if (up.changeMaterial)
             {
@@ -673,7 +668,7 @@ namespace RTSToolkitFree
             up.isAttacking = false;
             up.target = null;
 
-            up.GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(up.transform.position);
+            up.GetComponent<NavMeshAgent>().SetDestination(up.transform.position);
 
             if (up.changeMaterial)
             {

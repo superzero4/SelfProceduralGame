@@ -1,29 +1,31 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.AI;
 
 namespace RTSToolkitFree
 {
     public class UnitPars : MonoBehaviour
     {
+        public string unitDesc;
+        
         public bool isMovable = true;
 
-        public bool isReady = false;
-        public bool isApproaching = false;
-        public bool isAttacking = false;
+        public bool isReady;
+        public bool isApproaching;
+        public bool isAttacking;
         [HideInInspector] public bool isApproachable = true;
-        public bool isHealing = false;
-        public bool isImmune = false;
-        public bool isDying = false;
-        public bool isSinking = false;
+        public bool isHealing;
+        public bool isImmune;
+        public bool isDying;
+        public bool isSinking;
 
-        public UnitPars target = null;
+        public UnitPars target;
         public List<UnitPars> attackers = new List<UnitPars>();
 
-        public int noAttackers = 0;
         public int maxAttackers = 3;
 
         [HideInInspector] public float prevR;
-        [HideInInspector] public int failedR = 0;
+        [HideInInspector] public int failedR;
         public int critFailedR = 100;
 
         public float health = 100.0f;
@@ -33,11 +35,8 @@ namespace RTSToolkitFree
         public float strength = 10.0f;
         public float defence = 10.0f;
 
-        [HideInInspector] public int deathCalls = 0;
+        [HideInInspector] public int deathCalls;
         public int maxDeathCalls = 5;
-
-        [HideInInspector] public int sinkCalls = 0;
-        public int maxSinkCalls = 5;
 
         [HideInInspector] public bool changeMaterial = true;
 
@@ -45,7 +44,7 @@ namespace RTSToolkitFree
 
         void Start()
         {
-            UnityEngine.AI.NavMeshAgent nma = GetComponent<UnityEngine.AI.NavMeshAgent>();
+            NavMeshAgent nma = GetComponent<NavMeshAgent>();
             
             if (nma != null)
             {

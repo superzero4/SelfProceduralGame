@@ -9,7 +9,7 @@ namespace RTSToolkitFree
         public float rotationSpeed = 2f;
         public float scrollSpeed = 5f;
 
-        public float minAbsoluteHeight = 0f;
+        public float minAbsoluteHeight;
         public float minHeightAboveTerrain = 2f;
         public float maxHeightAboveTerrain = 200f;
 

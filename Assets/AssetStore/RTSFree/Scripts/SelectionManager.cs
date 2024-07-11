@@ -11,7 +11,7 @@ namespace RTSToolkitFree
         public Rect marqueeRect;
         private Rect backupRect;
         public Color rectColor = new Color(1f, 1f, 1f, 0.3f);
-        bool selectedByClickRunning = false;
+        bool selectedByClickRunning;
 
         public int unitControlMode;
 
@@ -161,9 +161,9 @@ namespace RTSToolkitFree
         void CheckForUnitCommands()
         {
             if (
-                (Input.GetMouseButtonUp(1) && SelectionManager.active.unitControlMode == 0) ||
-                (Input.GetMouseButtonUp(0) && SelectionManager.active.unitControlMode == 1) ||
-                (Input.GetMouseButtonUp(0) && SelectionManager.active.unitControlMode == 2)
+                (Input.GetMouseButtonUp(1) && active.unitControlMode == 0) ||
+                (Input.GetMouseButtonUp(0) && active.unitControlMode == 1) ||
+                (Input.GetMouseButtonUp(0) && active.unitControlMode == 2)
             )
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -180,7 +180,7 @@ namespace RTSToolkitFree
 
                         if (manualControl != null && manualControl.isSelected && up.nation == Diplomacy.active.playerNation)
                         {
-                            if (!(SelectionManager.active.unitControlMode == 2 && targetIndex == -1))
+                            if (!(active.unitControlMode == 2 && targetIndex == -1))
                             {
                                 manualControl.manualDestination = hit.point;
                                 manualControl.prepareMoving = true;
@@ -190,13 +190,12 @@ namespace RTSToolkitFree
                             {
                                 UnitPars currentTarget = up.target.GetComponent<UnitPars>();
                                 currentTarget.attackers.Remove(up);
-                                currentTarget.noAttackers = currentTarget.attackers.Count;
                                 up.target = null;
                             }
 
                             if (
                                 targetIndex != -1 &&
-                                SelectionManager.active.unitControlMode != 1
+                                active.unitControlMode != 1
                             )
                             {
                                 UnitPars target = BattleSystem.active.allUnits[targetIndex];
@@ -205,14 +204,13 @@ namespace RTSToolkitFree
                                 {
                                     up.target = target;
                                     target.attackers.Add(up);
-                                    target.noAttackers = target.attackers.Count;
                                 }
                             }
                         }
                     }
                 }
 
-                SelectionManager.active.unitControlMode = 0;
+                active.unitControlMode = 0;
             }
         }
 

@@ -4,19 +4,14 @@ namespace RTSToolkitFree
 {
     public class ManualControl : MonoBehaviour
     {
-        public bool isSelected = false;
-        public bool prepareMoving = false;
-        public bool isMoving = false;
+        public bool isSelected;
+        public bool prepareMoving;
+        public bool isMoving;
 
-        [HideInInspector] public float prevDist = 0.0f;
-        [HideInInspector] public int failedDist = 0;
+        [HideInInspector] public float prevDist;
+        [HideInInspector] public int failedDist;
         public int critFailedDist = 10;
 
         public Vector3 manualDestination;
-
-        void Start()
-        {
-            
-        }
     }
 }

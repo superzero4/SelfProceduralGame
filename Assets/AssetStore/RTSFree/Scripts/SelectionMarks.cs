@@ -1,5 +1,6 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.IO;
+using UnityEngine;
 
 namespace RTSToolkitFree
 {
@@ -15,15 +16,15 @@ namespace RTSToolkitFree
 
         float screenHeight;
 
-        bool unlocked = false;
+        bool unlocked;
 
         int colorsCount = 31;
 
         int healthBarLevels = 60;
 
 
-        public bool useSelectionMarks = false;
-        public bool useHealthBars = false;
+        public bool useSelectionMarks;
+        public bool useHealthBars;
 
 
         void Awake()
@@ -371,14 +372,14 @@ namespace RTSToolkitFree
         {
 #if !UNITY_WEBPLAYER
             byte[] bytes = tex.EncodeToPNG();
-            System.IO.File.WriteAllBytes(Application.dataPath + "/../" + tname + ".png", bytes);
+            File.WriteAllBytes(Application.dataPath + "/../" + tname + ".png", bytes);
 #endif
         }
 
 
         void OnGUI()
         {
-            if (unlocked == true)
+            if (unlocked)
             {
                 screenHeight = Screen.height;
                 int index = 0;

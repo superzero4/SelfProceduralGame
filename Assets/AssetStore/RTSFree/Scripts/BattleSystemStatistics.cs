@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using UnityEngine;
 
 namespace RTSToolkitFree
@@ -12,7 +13,7 @@ namespace RTSToolkitFree
 
         public static void UpdateWithStatistics(BattleSystem battleSystem, float deltaTime)
         {
-            System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
+            Stopwatch sw = new Stopwatch();
             sw.Start();
 
             battleSystem.SearchPhase(deltaTime);

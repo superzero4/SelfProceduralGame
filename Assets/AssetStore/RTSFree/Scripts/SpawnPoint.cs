@@ -1,43 +1,58 @@
-﻿using UnityEngine;
+﻿using Game;
+using TMPro;
+using UnityEngine;
 
 namespace RTSToolkitFree
 {
     public class SpawnPoint : MonoBehaviour
     {
         public GameObject objectToSpawn;
-        public float timestep = 0.01f;
-        public int numberOfObjects = 10000;
-        public float size = 1.0f;
-
-        Terrain ter;
         public bool randomizeRotation = true;
+        public int numberOfObjects = 10000;
+        public float timestep = 0.01f;
+        public float size = 1.0f;
         public Vector3 posOffset;
 
-        void Awake()
-        {
-
-        }
-
-        void Start()
+        private Terrain ter;
+        private float spawnTimer;
+        private TMP_Text text;
+        
+        private void Start()
         {
             ter = FindObjectOfType<Terrain>();
         }
 
-        void Update()
+        private void Update()
         {
             Spawn();
         }
 
-        float tSpawn = 0f;
-        void Spawn()
+        public void Init(Building b)
+        {
+            text = transform.GetChild(0).GetComponentInChildren<TMP_Text>();
+            
+            if (text == null)
+            {
+                Debug.Log("No text found in children !");
+                return;
+            }
+
+            var unitPars = GetComponent<UnitPars>();
+
+            name = b.name;
+            unitPars.unitDesc = b.description;
+            text.text = b.visualData.fallbackAsciiArt;
+        }
+        
+        private void Spawn()
         {
             if (numberOfObjects <= 0)
             {
                 return;
             }
 
-            tSpawn -= Time.deltaTime;
-            if (tSpawn > 0f)
+            spawnTimer -= Time.deltaTime;
+            if (spawnTimer > 0f)
             {
                 return;
             }
@@ -84,7 +99,7 @@ namespace RTSToolkitFree
             BattleSystem.active.allUnits.Add(instanceUp);
 
             numberOfObjects--;
-            tSpawn = timestep;
+            spawnTimer = timestep;
         }
 
         Vector3 TerrainVector(Vector3 origin, Terrain ter1)
