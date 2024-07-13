@@ -5,24 +5,22 @@ namespace RTSToolkitFree
     public class RTSCamera : MonoBehaviour
     {
         [HideInInspector] public Terrain terrain;
-        public float moveSpeed = 1f;
-        public float rotationSpeed = 2f;
-        public float scrollSpeed = 5f;
+        [SerializeField] private float moveSpeed = 1f;
+        [SerializeField] private float rotationSpeed = 2f;
+        [SerializeField] private float scrollSpeed = 5f;
 
-        public float minAbsoluteHeight;
-        public float minHeightAboveTerrain = 2f;
-        public float maxHeightAboveTerrain = 200f;
-
-        public bool showControls = true;
-
+        [SerializeField] private float minAbsoluteHeight;
+        [SerializeField] private float minHeightAboveTerrain = 2f;
+        [SerializeField] private float maxHeightAboveTerrain = 200f;
+        
+        [SerializeField] private SpawnPoint buildingPrefab;
+        [SerializeField] private LayerMask terrainMask;
+        private Camera cam;
+        
         void Awake()
         {
             terrain = FindObjectOfType<Terrain>();
-        }
-
-        void Start()
-        {
-
+            cam = GetComponent<Camera>();
         }
 
         void Update()
@@ -30,9 +28,10 @@ namespace RTSToolkitFree
             Move();
             Rotate();
             Zoom();
+            Click();
         }
 
-        void Move()
+        private void Move()
         {
             Vector3 movingDirection = Vector3.zero;
             if (Input.GetKey(KeyCode.W))
@@ -59,7 +58,7 @@ namespace RTSToolkitFree
             }
 
             float y = transform.position.y - h;
-            Vector3 velocity = movingDirection * Time.deltaTime * y * moveSpeed;
+            Vector3 velocity = movingDirection * (Time.deltaTime * y * moveSpeed);
             transform.position += velocity;
             float newHeight = terrain.SampleHeight(transform.position);
 
@@ -71,7 +70,7 @@ namespace RTSToolkitFree
             transform.position = new Vector3(transform.position.x, newHeight + y, transform.position.z);
         }
 
-        void Rotate()
+        private void Rotate()
         {
             if (Input.GetMouseButton(1))
             {
@@ -88,7 +87,7 @@ namespace RTSToolkitFree
             }
         }
 
-        void Zoom()
+        private void Zoom()
         {
             float msw = Input.GetAxis("Mouse ScrollWheel");
             if (msw != 0)
@@ -100,7 +99,7 @@ namespace RTSToolkitFree
                 }
                 float y = transform.position.y - h;
 
-                transform.position += msw * transform.forward * scrollSpeed * y * Time.deltaTime;
+                transform.position += transform.forward * (msw * scrollSpeed * y * Time.deltaTime);
 
                 if (y < minHeightAboveTerrain)
                 {
@@ -113,13 +112,17 @@ namespace RTSToolkitFree
             }
         }
 
-        void OnGUI()
+        private void Click()
         {
-            if (showControls)
+            if (Input.GetMouseButtonDown(0))
             {
-                GUI.Label(new Rect(Screen.width * 0.05f, Screen.height * 0.7f, 500f, 20f), "WASD Keys - Move");
-                GUI.Label(new Rect(Screen.width * 0.05f, Screen.height * 0.75f, 500f, 20f), "Mouse Right - Rotate");
-                GUI.Label(new Rect(Screen.width * 0.05f, Screen.height * 0.8f, 500f, 20f), "Mouse Wheel - Zoom");
+                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out RaycastHit hitInfo, 500, terrainMask))
+                {
+                    var newBuidling = Instantiate(buildingPrefab, hitInfo.point, Quaternion.identity);
+                    newBuidling.transform.up = hitInfo.normal;
+                    newBuidling.Init(DataInit.SelectedBuilding);
+                }
             }
         }
     }
