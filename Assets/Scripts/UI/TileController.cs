@@ -22,18 +22,8 @@ public class TileController : MonoBehaviour
     {
         public string name, description;
         [FormerlySerializedAs("_visuals")] public VisualData visuals;
+        public float[] values;
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
     public void UpdateTiles(IEnumerable<VisualInformation> select)
     {
         if (_tiles.Count == 0)
@@ -41,7 +31,7 @@ public class TileController : MonoBehaviour
             foreach (var v in select)
             {
                 var t = NewTile();
-                t.SetVisuals(v);
+                t.SetVisuals(v,true);
             }
         }else
             UpdateTiles(select.ToList());

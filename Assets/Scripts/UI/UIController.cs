@@ -22,6 +22,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private Button _start;
     [SerializeField] private Button _next;
     [SerializeField] private TMPro.TMP_InputField _inputText;
+    [SerializeField] private TMPro.TMP_InputField _altInputText;
     [SerializeField] private TMPro.TMP_Text _infoText;
     private string _baseInfo;
 
@@ -30,12 +31,12 @@ public class UIController : MonoBehaviour
         _inputText.text = _chat.Random().info;
         _baseInfo = _start.GetComponentInChildren<TMPro.TMP_Text>().text;
         _baseInfo = _infoText.text;
-        _start.onClick.AddListener(() => _chat.SendConstrainedPrompt(_inputText.text, ""));
+        _start.onClick.AddListener(() => _chat.SendConstrainedPrompt(_inputText.text, _altInputText.text));
         _unitsCount.onValueChanged.AddListener(f => _chat._nbUnit = (int)f);
         _unitsCount.onValueChanged.AddListener(f => UpdateInfo());
         _buildingCount.onValueChanged.AddListener(f => _chat._nbBuilding = (int)f);
         _buildingCount.onValueChanged.AddListener(f => UpdateInfo());
-        _next.onClick.AddListener(() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex));
+        _next.onClick.AddListener(() => SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1));
         _buildingCount.value = UnityEngine.Random.Range(0,(int)_buildingCount.maxValue);
         _unitsCount.value = UnityEngine.Random.Range(0,(int)_unitsCount.maxValue);
         UpdateInfo();
@@ -64,11 +65,11 @@ public class UIController : MonoBehaviour
     {
         _buildings.UpdateTiles(data.buildings.Select(building => new TileController.VisualInformation()
         {
-            name = building.name, description = building.description, visuals = building.visualData
+            name = building.name, description = building.description, visuals = building.visualData, values = new float[]{building.maxHealth, building.selfHealFactor,building.defence,building.spawnDelay}
         }));
         _units.UpdateTiles(data.units.Select(unit => new TileController.VisualInformation()
         {
-            name = unit.name, description = unit.description, visuals = unit.visualData
+            name = unit.name, description = unit.description, visuals = unit.visualData, values =new float[]{unit.maxHealth, unit.selfHealFactor,unit.defence,unit.strength}
         }));
     }
 }
