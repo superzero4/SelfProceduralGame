@@ -1,4 +1,5 @@
-﻿using Game;
+﻿using System.Collections.Generic;
+using Game;
 using TMPro;
 using UnityEngine;
 
@@ -28,7 +29,7 @@ namespace RTSToolkitFree
             Spawn();
         }
 
-        public void Init(Building b)
+        public void Init(Building b, List<Unit> u)
         {
             text = transform.GetChild(0).GetComponentInChildren<TMP_Text>();
             
@@ -48,6 +49,8 @@ namespace RTSToolkitFree
             timestep = b.spawnDelay;
             
             text.text = b.visualData.fallbackAsciiArt;
+
+            unitData = u.ToArray();
         }
         
         private void Spawn()

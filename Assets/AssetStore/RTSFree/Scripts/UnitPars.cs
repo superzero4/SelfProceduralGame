@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Game;
+using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
@@ -21,7 +22,7 @@ namespace RTSToolkitFree
         public bool isSinking;
 
         public UnitPars target;
-        public List<UnitPars> attackers = new List<UnitPars>();
+        public List<UnitPars> attackers = new();
 
         public int maxAttackers = 3;
 
@@ -43,6 +44,8 @@ namespace RTSToolkitFree
 
         public int nation = 1;
 
+        [SerializeField] private TMP_Text display;
+
         void Start()
         {
             NavMeshAgent nma = GetComponent<NavMeshAgent>();
@@ -55,13 +58,14 @@ namespace RTSToolkitFree
 
         public void Init(Unit u)
         {
-            // Todo: visuel
             name = u.name;
             desc = u.description;
             health = maxHealth = u.maxHealth;
             defence = u.defence;
             strength = u.strength;
             selfHealFactor = u.selfHealFactor;
+
+            display.text = u.visualData.fallbackAsciiArt;
         }
     }
 }
