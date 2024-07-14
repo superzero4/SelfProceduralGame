@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Game;
 using RTSToolkitFree;
 using TMPro;
@@ -68,8 +67,10 @@ public class DataInit : MonoBehaviour
             Button newItem = Instantiate(buttonPrefab, buttonParent.transform).GetComponent<Button>();
             newItem.onClick.AddListener(() => cam.SpawnBuilding(buildingIndex));
             newItem.GetComponentInChildren<TMP_Text>().text = b.name;
+            cam.buttons.Add(newItem);
         }
 
         cam.SelectedBuilding = Data.buildings[0];
+        cam.UpdateButtons();
     }
 }

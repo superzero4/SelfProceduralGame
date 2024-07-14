@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Game;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace RTSToolkitFree
 {
@@ -20,6 +23,9 @@ namespace RTSToolkitFree
         
         [NonSerialized] public Building SelectedBuilding;
         private Camera cam;
+
+        public List<Button> buttons = new();
+        private List<string> spawnedBuildings = new();
         
         void Awake()
         {
@@ -134,7 +140,23 @@ namespace RTSToolkitFree
                     {
                         newBuidling.Init(SelectedBuilding, null);
                     }
+
+                    if (!spawnedBuildings.Contains(SelectedBuilding.name))
+                    {
+                        spawnedBuildings.Add(SelectedBuilding.name);
+                    }
+
+                    UpdateButtons();
                 }
+            }
+        }
+
+        public void UpdateButtons()
+        {
+            var data = DataInit.Data.buildings;
+            for (int i = 0; i < data.Length; i++)
+            {
+                buttons[i].interactable = !data[i].dependencies.Except(spawnedBuildings).Any();
             }
         }
         
