@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
+using Game;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 namespace RTSToolkitFree
 {
     public class UnitPars : MonoBehaviour
     {
-        public string unitDesc;
+        [FormerlySerializedAs("unitDesc")] public string desc;
         
         public bool isMovable = true;
 
@@ -14,7 +16,6 @@ namespace RTSToolkitFree
         public bool isApproaching;
         public bool isAttacking;
         [HideInInspector] public bool isApproachable = true;
-        public bool isHealing;
         public bool isImmune;
         public bool isDying;
         public bool isSinking;
@@ -50,6 +51,17 @@ namespace RTSToolkitFree
             {
                 nma.enabled = true;
             }
+        }
+
+        public void Init(Unit u)
+        {
+            // Todo: visuel
+            name = u.name;
+            desc = u.description;
+            health = maxHealth = u.maxHealth;
+            defence = u.defence;
+            strength = u.strength;
+            selfHealFactor = u.selfHealFactor;
         }
     }
 }

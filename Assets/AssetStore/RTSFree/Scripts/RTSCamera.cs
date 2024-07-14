@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using Game;
+using UnityEngine;
 
 namespace RTSToolkitFree
 {
@@ -15,6 +17,8 @@ namespace RTSToolkitFree
         
         [SerializeField] private SpawnPoint buildingPrefab;
         [SerializeField] private LayerMask terrainMask;
+        
+        [NonSerialized] public Building SelectedBuilding;
         private Camera cam;
         
         void Awake()
@@ -121,9 +125,14 @@ namespace RTSToolkitFree
                 {
                     var newBuidling = Instantiate(buildingPrefab, hitInfo.point, Quaternion.identity);
                     newBuidling.transform.up = hitInfo.normal;
-                    newBuidling.Init(DataInit.SelectedBuilding);
+                    newBuidling.Init(SelectedBuilding);
                 }
             }
+        }
+        
+        public void SpawnBuilding(int i)
+        {
+            SelectedBuilding = DataInit.Data.buildings[i];
         }
     }
 }

@@ -441,21 +441,18 @@ namespace RTSToolkitFree
                     // if unit has less health than 0, preparing it to die
                     if (shealPars.health < 0f)
                     {
-                        shealPars.isHealing = false;
                         shealPars.isImmune = true;
                         shealPars.isDying = true;
                     }
                     // healing unit	
                     else
                     {
-                        shealPars.isHealing = true;
                         shealPars.health += shealPars.selfHealFactor * deltaTime / selfHealUpdateFraction;
 
                         // if unit health reaches maximum, unset self-healing
                         if (shealPars.health >= shealPars.maxHealth)
                         {
                             shealPars.health = shealPars.maxHealth;
-                            shealPars.isHealing = false;
                         }
                     }
                 }
@@ -510,7 +507,6 @@ namespace RTSToolkitFree
                         deadPars.isApproaching = false;
                         deadPars.isAttacking = false;
                         deadPars.isApproachable = false;
-                        deadPars.isHealing = false;
                         deadPars.target = null;
 
                         // unselecting deads	

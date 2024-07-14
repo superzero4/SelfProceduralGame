@@ -6,7 +6,8 @@ namespace RTSToolkitFree
 {
     public class SpawnPoint : MonoBehaviour
     {
-        public GameObject objectToSpawn;
+        public UnitPars genericUnit;
+        public Unit[] unitData;
         public bool randomizeRotation = true;
         public int numberOfObjects = 10000;
         public float timestep = 0.01f;
@@ -40,7 +41,12 @@ namespace RTSToolkitFree
             var unitPars = GetComponent<UnitPars>();
 
             name = b.name;
-            unitPars.unitDesc = b.description;
+            
+            unitPars.desc = b.description;
+            unitPars.health = unitPars.maxHealth = b.maxHealth;
+            unitPars.defence = b.defence;
+            timestep = b.spawnDelay;
+            
             text.text = b.visualData.fallbackAsciiArt;
         }
         
@@ -78,7 +84,9 @@ namespace RTSToolkitFree
             Vector3 pos = transform.position + new Vector3(randPos.x, 0f, randPos.y) + transform.rotation * posOffset;
             pos = TerrainVector(pos, ter);
 
-            GameObject instance = Instantiate(objectToSpawn, pos, rot);
+            // Choisir data random à spawn
+            UnitPars instance = Instantiate(genericUnit, pos, rot);
+            instance.Init(unitData[Random.Range(0,unitData.Length)]);
             UnitPars instanceUp = instance.GetComponent<UnitPars>();
 
             if (instanceUp != null)
