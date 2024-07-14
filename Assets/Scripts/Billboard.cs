@@ -11,7 +11,7 @@ public class Billboard : MonoBehaviour
 
         while (true)
         {
-            transform.LookAt(-cam.transform.position);
+            transform.LookAt(cam.transform.position);
             yield return new WaitForSeconds(0.1f);
         }
     }

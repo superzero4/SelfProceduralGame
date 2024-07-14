@@ -125,7 +125,15 @@ namespace RTSToolkitFree
                 {
                     var newBuidling = Instantiate(buildingPrefab, hitInfo.point, Quaternion.identity);
                     newBuidling.transform.up = hitInfo.normal;
-                    newBuidling.Init(SelectedBuilding, DataInit.UnitLookup[SelectedBuilding.name]);
+
+                    if (DataInit.UnitLookup.ContainsKey(SelectedBuilding.name))
+                    {
+                        newBuidling.Init(SelectedBuilding, DataInit.UnitLookup[SelectedBuilding.name]);
+                    }
+                    else
+                    {
+                        newBuidling.Init(SelectedBuilding, null);
+                    }
                 }
             }
         }

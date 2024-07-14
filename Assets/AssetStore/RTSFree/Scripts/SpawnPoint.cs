@@ -50,11 +50,16 @@ namespace RTSToolkitFree
             
             text.text = b.visualData.fallbackAsciiArt;
 
-            unitData = u.ToArray();
+            if (u != null)
+            {
+                unitData = u.ToArray();
+            }
         }
         
         private void Spawn()
         {
+            if(unitData == null) return;
+            
             if (numberOfObjects <= 0)
             {
                 return;
