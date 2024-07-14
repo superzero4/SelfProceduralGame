@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Game;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace RTSToolkitFree
@@ -124,7 +125,7 @@ namespace RTSToolkitFree
 
         private void Click()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             {
                 Ray ray = cam.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out RaycastHit hitInfo, 500, terrainMask))
