@@ -32,6 +32,7 @@ public class UIController : MonoBehaviour
         _baseInfo = _start.GetComponentInChildren<TMPro.TMP_Text>().text;
         _baseInfo = _infoText.text;
         _start.onClick.AddListener(() => _chat.SendConstrainedPrompt(_inputText.text, _altInputText.text));
+        _start.onClick.AddListener(()=>_start.gameObject.SetActive(false));
         _unitsCount.onValueChanged.AddListener(f => _chat._nbUnit = (int)f);
         _unitsCount.onValueChanged.AddListener(f => UpdateInfo());
         _buildingCount.onValueChanged.AddListener(f => _chat._nbBuilding = (int)f);

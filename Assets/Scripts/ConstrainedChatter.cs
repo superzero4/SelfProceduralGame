@@ -28,7 +28,9 @@ public class ConstrainedChatter : ChatInteractor
     public FinalData LastData => ReadHistory(0);
     public FinalData ReadHistory(int index) => _history.Get(index).data;
     public AnswerHistory.HistoryEntry Random() => _history.Get(UnityEngine.Random.Range(0, _history.Count));
-    [SerializeField, InlineEditor] private AnswerHistory _history;
+    //[InlineEditor]
+    [SerializeField]
+    private AnswerHistory _history;
 
     //Always accessible publicy through LastData and ReadHistory(0)
     public UnityEvent<FinalData> newAnswerTreated = new();
@@ -38,7 +40,7 @@ public class ConstrainedChatter : ChatInteractor
     protected override void Awake()
     {
         base.Awake();
-        allAnswerTreated.AddListener(data => _crossSceneInfo.data = data);
+        allAnswerTreated.AddListener(data => _crossSceneInfo.SetFinalData(data));
     }
     protected override void OnAnswerReceived(string result)
     {
@@ -56,6 +58,7 @@ public class ConstrainedChatter : ChatInteractor
             string visual = ExtractSubString("text = ", ", inlineData", result, false, false);
             var lengths = new int[] { _last.data.buildings.Length, _last.data.units.Length };
             (int arr, int ind) = distributedIndex(currentChatStep - 1, lengths);
+            
             switch (arr)
             {
                 default:

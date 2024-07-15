@@ -32,6 +32,6 @@ public class Tile : MonoBehaviour
         _description.text = visualInformation.description;
         _border.color = visualInformation.name.ToConstantRGB();
         //Linke break every two values
-        _infoText.text = string.Join("\n", visualInformation.values.Select((f,i) => f.ToString("F1") /*+(i%2==0 ? "\n":"")*/));
+        _infoText.text = string.Join("\n", visualInformation.values.Select((f,i) => f.ToString("F3") /*+(i%2==0 ? "\n":"")*/));
     }
 }

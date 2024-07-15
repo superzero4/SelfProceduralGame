@@ -1,8 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GoogleApis.GenerativeLanguage;
+using Newtonsoft.Json;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,7 +26,7 @@ namespace GoogleApis.Example
         [Header("Options")] [SerializeField] [TextArea(1, 10)]
         private string systemInstruction = string.Empty;
 
-        [SerializeField] private bool showAvailableModels=false;
+        [SerializeField] private bool showAvailableModels = false;
 
         [SerializeField] private bool useStream = false;
 
@@ -64,7 +66,18 @@ namespace GoogleApis.Example
             await SendRequest(input, systemInstruction, true);
             inputField.text = string.Empty;
         }
-
+        const string censoredAscii=
+            "--------------------------------\n" +
+            "-xxxxxxxxxxxxxxxxxxxxxxx-\n" +
+            "-xxxxxxxxxxxxxxxxxxxxxxx-\n" +
+            "-xxxxxxxxxxxxxxxxxxxxxxx-\n" +
+            "-xxxxxxxxxxxxxxxxxxxxxxx-\n" +
+            "-xxxxxxCENSOREDxxxxx-\n" +
+            "-xxxxxxxxxxxxxxxxxxxxxxx-\n" +
+            "-xxxxxxxxxxxxxxxxxxxxxxx-\n" +
+            "-xxxxxxxxxxxxxxxxxxxxxxx-\n" +
+            "-xxxxxxxxxxxxxxxxxxxxxxx-\n" +
+            "--------------------------------";
         public async Task<string> SendRequest(string input, string systemInstruction, bool refreshView = false)
         {
             if (string.IsNullOrEmpty(input))
@@ -113,7 +126,23 @@ namespace GoogleApis.Example
             }
             else
             {
-                var response = await model.GenerateContentAsync(request, destroyCancellationToken);
+                GenerateContentResponse response;
+                try
+                {
+                    response = await model.GenerateContentAsync(request, destroyCancellationToken);
+                }
+                catch (System.Exception e)
+                {
+                    response = new GenerateContentResponse(
+                        new Candidate[1]
+                        {
+                            new Candidate(new Content(Role.Model,
+                                new Content.Part()
+                                    { text = censoredAscii }))
+                        }, null);
+                    Debug.LogError("Full exception to find censor reasons : " + e.Message);
+                }
+
                 if (response.candidates.Length > 0)
                 {
                     var modelContent = response.candidates[0].content;
@@ -121,7 +150,19 @@ namespace GoogleApis.Example
                     if (refreshView)
                         RefreshView();
                     else
-                        return string.Join(",",modelContent.parts.Select(x=>x?.ToString()));
+                    {
+                        try
+                        {
+                            return string.Join(",", modelContent.parts.Select(x => x?.ToString()));
+                        }
+                        catch (NullReferenceException e)
+                        {
+                            
+                            return new Content.Part()
+                                    { text = censoredAscii }
+                                .ToString();
+                        }
+                    }
                 }
             }
 
