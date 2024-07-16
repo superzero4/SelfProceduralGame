@@ -8,13 +8,13 @@ namespace RTSToolkitFree
 
         [HideInInspector] public bool isEnabled;
 
-        GUIStyle unclickedStyle;
-        GUIStyle notAllowedStyle;
-        GUIStyle alowedStyle;
+        private GUIStyle unclickedStyle;
+        private GUIStyle notAllowedStyle;
+        private GUIStyle alowedStyle;
 
-        Rect stopRect;
-        Rect moveRect;
-        Rect attackRect;
+        private Rect stopRect;
+        private Rect moveRect;
+        private Rect attackRect;
 
         void Awake()
         {
@@ -31,9 +31,9 @@ namespace RTSToolkitFree
             int width = 100;
             int height = 50;
 
-            stopRect = new Rect(Screen.width / 2 - (width + 10) - width / 2, Screen.height - 10 - height, width, height);
-            moveRect = new Rect(Screen.width / 2 - width / 2, Screen.height - 10 - height, width, height);
-            attackRect = new Rect(Screen.width / 2 + (width + 10) - width / 2, Screen.height - 10 - height, width, height);
+            stopRect = new Rect(Screen.width / 2 - (width + 10) - width / 2, 10 + height, width, height);
+            moveRect = new Rect(Screen.width / 2 - width / 2, 10 + height, width, height);
+            attackRect = new Rect(Screen.width / 2 + (width + 10) - width / 2, 10 + height, width, height);
         }
 
         Texture2D ColorToTexture(Color color)

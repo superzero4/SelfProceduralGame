@@ -14,7 +14,7 @@ namespace RTSToolkitFree
     {
         public static BattleSystem active;
 
-        public bool showStatistics;
+        public bool showStatistics = false;
 
         [HideInInspector] public List<UnitPars> allUnits = new List<UnitPars>();
 
