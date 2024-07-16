@@ -23,6 +23,7 @@ namespace RTSToolkitFree
         [SerializeField] private LayerMask terrainMask;
         
         [NonSerialized] public Building SelectedBuilding;
+        private Team currentTeam = Team.Red;
         private Camera cam;
 
         public List<Button> buttons = new();
@@ -138,11 +139,11 @@ namespace RTSToolkitFree
 
                     if (DataInit.UnitLookup.ContainsKey(SelectedBuilding.name))
                     {
-                        newBuidling.Init(SelectedBuilding, DataInit.UnitLookup[SelectedBuilding.name]);
+                        newBuidling.Init(SelectedBuilding, DataInit.UnitLookup[SelectedBuilding.name], currentTeam);
                     }
                     else
                     {
-                        newBuidling.Init(SelectedBuilding, null);
+                        newBuidling.Init(SelectedBuilding, null, currentTeam);
                     }
 
                     if (!spawnedBuildings.Contains(SelectedBuilding.name))
@@ -168,5 +169,12 @@ namespace RTSToolkitFree
         {
             SelectedBuilding = DataInit.Data.buildings[i];
         }
+
+        public void SetTeam(int i)
+        {
+            currentTeam = (Team)i;
+        }
     }
 }
+
+public enum Team {Red, Blue, Green, Yellow}

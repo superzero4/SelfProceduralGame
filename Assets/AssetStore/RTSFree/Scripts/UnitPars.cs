@@ -54,7 +54,7 @@ namespace RTSToolkitFree
             }
         }
 
-        public void Init(Unit u)
+        public void Init(Unit u, Team t)
         {
             name = u.name;
             desc = u.description;
@@ -62,8 +62,9 @@ namespace RTSToolkitFree
             defence = u.defence;
             strength = u.strength;
             selfHealFactor = u.selfHealFactor;
-
+            nation = (int)t;
             display.text = u.visualData.fallbackAsciiArt;
+            display.color = SpawnPoint.GetTeamColor(t);
         }
     }
 }

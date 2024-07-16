@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Game;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace RTSToolkitFree
 {
@@ -18,6 +20,7 @@ namespace RTSToolkitFree
         private Terrain ter;
         private float spawnTimer;
         private TMP_Text text;
+        private Team team;
         
         private void Start()
         {
@@ -29,7 +32,7 @@ namespace RTSToolkitFree
             Spawn();
         }
 
-        public void Init(Building b, List<Unit> u)
+        public void Init(Building b, List<Unit> u, Team t)
         {
             text = transform.GetChild(0).GetComponentInChildren<TMP_Text>();
             
@@ -46,10 +49,13 @@ namespace RTSToolkitFree
             unitPars.desc = b.description;
             unitPars.health = unitPars.maxHealth = b.maxHealth;
             unitPars.defence = b.defence;
+            unitPars.nation = (int)t;
             timestep = b.spawnDelay;
             
             text.text = b.visualData.fallbackAsciiArt;
-
+            text.color = GetTeamColor(t);
+            team = t;
+            
             if (u != null)
             {
                 unitData = u.ToArray();
@@ -94,7 +100,7 @@ namespace RTSToolkitFree
 
             // Choisir data random à spawn
             UnitPars instance = Instantiate(genericUnit, pos, rot);
-            instance.Init(unitData[Random.Range(0,unitData.Length)]);
+            instance.Init(unitData[Random.Range(0,unitData.Length)], team);
             UnitPars instanceUp = instance.GetComponent<UnitPars>();
 
             if (instanceUp != null)
@@ -127,6 +133,23 @@ namespace RTSToolkitFree
 
             Vector3 tv = new Vector3(origin.x, y, origin.z);
             return tv;
+        }
+
+        public static Color GetTeamColor(Team teamIndex)
+        {
+            switch (teamIndex)
+            {
+                case Team.Red:
+                    return new Color(0.8867924f, 0.1213065f, 0.3441888f, 1);
+                case Team.Blue:
+                    return new Color(0.4377504f, 0.1840513f, 0.8301887f, 1);
+                case Team.Green:
+                    return new Color(0.4079707f, 0.8018868f, 0.1929067f, 1);
+                case Team.Yellow:
+                    return new Color(0.8584906f, 0.5049533f, 0.2065237f, 1);
+            }
+
+            return new Color();
         }
     }
 }
