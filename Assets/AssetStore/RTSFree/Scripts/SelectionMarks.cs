@@ -396,10 +396,8 @@ namespace RTSToolkitFree
 
                     if (manualControl != null && manualControl.isSelected)
                     {
-                        MeshRenderer mr = up.GetComponent<MeshRenderer>();
-
                         Vector3 _unitCenter = Vector3.zero;
-                        float _unitSize = mr.bounds.extents.magnitude;
+                        float _unitSize = 1;
 
                         screenPos = camera.WorldToScreenPoint(up.transform.position + _unitCenter);
                         Vector3 heading = up.transform.position + _unitCenter - camPos;

@@ -27,6 +27,7 @@ namespace RTSToolkitFree
 
         public List<Button> buttons = new();
         private List<string> spawnedBuildings = new();
+        private bool canPlaceBuidlings = true;
         
         void Awake()
         {
@@ -40,6 +41,8 @@ namespace RTSToolkitFree
             Rotate();
             Zoom();
             Click();
+
+            if (Input.GetKeyDown(KeyCode.X)) canPlaceBuidlings = !canPlaceBuidlings;
         }
 
         private void Move()
@@ -125,7 +128,7 @@ namespace RTSToolkitFree
 
         private void Click()
         {
-            if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
+            if (canPlaceBuidlings && Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
             {
                 Ray ray = cam.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out RaycastHit hitInfo, 500, terrainMask))

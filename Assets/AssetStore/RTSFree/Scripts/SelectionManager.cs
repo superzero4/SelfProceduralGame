@@ -42,9 +42,6 @@ namespace RTSToolkitFree
                 float _invertedY = Screen.height - Input.mousePosition.y;
                 marqueeOrigin = new Vector2(Input.mousePosition.x, _invertedY);
 
-                //Check if the player just wants to select a single unit opposed to drawing a marquee and selecting a range of units
-                Vector3 camPos = Camera.main.transform.position;
-
                 for (int i = 0; i < BattleSystem.active.allUnits.Count; i++)
                 {
                     UnitPars up = BattleSystem.active.allUnits[i];
@@ -234,15 +231,10 @@ namespace RTSToolkitFree
 
                     float distFromRay = Vector3.Distance(rayDirection * unitDistFromCamera, pos - camPos);
 
-                    if (distFromRay < smallestDistance)
+                    if (distFromRay < smallestDistance && distFromRay < 1)
                     {
-                        MeshRenderer mr = up.GetComponent<MeshRenderer>();
-
-                        if (distFromRay < mr.bounds.extents.magnitude)
-                        {
-                            smallestDistance = distFromRay;
-                            smallestDistanceIndex = i;
-                        }
+                        smallestDistance = distFromRay;
+                        smallestDistanceIndex = i;
                     }
                 }
             }
