@@ -58,7 +58,7 @@ namespace RTSToolkitFree
         
         private void Spawn()
         {
-            if(unitData == null) return;
+            if(unitData == null || unitData.Length == 0) return;
             
             if (numberOfObjects <= 0)
             {
@@ -105,11 +105,6 @@ namespace RTSToolkitFree
                 }
 
                 instanceUp.isReady = true;
-
-                if (instanceUp.changeMaterial)
-                {
-                    instanceUp.GetComponent<Renderer>().material.color = Color.yellow;
-                }
             }
 
             BattleSystem.active.allUnits.Add(instanceUp);

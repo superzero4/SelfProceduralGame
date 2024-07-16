@@ -271,11 +271,6 @@ namespace RTSToolkitFree
                                     apprPars.target.attackers.Remove(apprPars);
                                     apprPars.target = null;
                                 }
-
-                                if (apprPars.changeMaterial)
-                                {
-                                    apprPars.GetComponent<Renderer>().material.color = Color.yellow;
-                                }
                             }
                         }
                         else
@@ -288,19 +283,9 @@ namespace RTSToolkitFree
                                 // pre-setting for attacking
                                 apprPars.isApproaching = false;
                                 apprPars.isAttacking = true;
-
-                                if (apprPars.changeMaterial)
-                                {
-                                    apprPars.GetComponent<Renderer>().material.color = Color.red;
-                                }
                             }
                             else
                             {
-                                if (apprPars.changeMaterial)
-                                {
-                                    apprPars.GetComponent<Renderer>().material.color = Color.green;
-                                }
-
                                 // starting to move
                                 if (apprPars.isMovable)
                                 {
@@ -325,11 +310,6 @@ namespace RTSToolkitFree
 
                         apprPars.isApproaching = false;
                         apprPars.isReady = true;
-
-                        if (apprPars.changeMaterial)
-                        {
-                            apprPars.GetComponent<Renderer>().material.color = Color.yellow;
-                        }
                     }
                 }
             }
@@ -386,20 +366,10 @@ namespace RTSToolkitFree
                         attPars.isReady = true;
 
                         targPars.attackers.Remove(attPars);
-
-                        if (attPars.changeMaterial)
-                        {
-                            attPars.GetComponent<Renderer>().material.color = Color.yellow;
-                        }
                     }
                     // attacker starts attacking their target	
                     else
                     {
-                        if (attPars.changeMaterial)
-                        {
-                            attPars.GetComponent<Renderer>().material.color = Color.red;
-                        }
-
                         float strength = attPars.strength;
                         float defence = attPars.defence;
 
@@ -525,11 +495,6 @@ namespace RTSToolkitFree
                         nma.avoidancePriority = 0;
 
                         deadPars.deathCalls++;
-
-                        if (deadPars.changeMaterial)
-                        {
-                            deadPars.GetComponent<Renderer>().material.color = Color.blue;
-                        }
                     }
                 }
             }
@@ -562,11 +527,6 @@ namespace RTSToolkitFree
 
                 if (sinkPars.isSinking)
                 {
-                    if (sinkPars.changeMaterial)
-                    {
-                        sinkPars.GetComponent<Renderer>().material.color = new Color((148.0f / 255.0f), (0.0f / 255.0f), (211.0f / 255.0f), 1.0f);
-                    }
-
                     // moving sinking object down into the ground	
                     if (sinkPars.transform.position.y > -1.0f)
                     {
@@ -649,11 +609,6 @@ namespace RTSToolkitFree
 
             up.GetComponent<NavMeshAgent>().SetDestination(up.transform.position);
 
-            if (up.changeMaterial)
-            {
-                up.GetComponent<Renderer>().material.color = Color.yellow;
-            }
-
             up.isReady = true;
         }
 
@@ -665,11 +620,6 @@ namespace RTSToolkitFree
             up.target = null;
 
             up.GetComponent<NavMeshAgent>().SetDestination(up.transform.position);
-
-            if (up.changeMaterial)
-            {
-                up.GetComponent<Renderer>().material.color = Color.grey;
-            }
         }
 
         public void AddNation()

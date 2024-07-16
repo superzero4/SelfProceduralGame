@@ -40,8 +40,6 @@ namespace RTSToolkitFree
         [HideInInspector] public int deathCalls;
         public int maxDeathCalls = 5;
 
-        [HideInInspector] public bool changeMaterial = true;
-
         public int nation = 1;
 
         [SerializeField] private TMP_Text display;
