@@ -12,7 +12,7 @@ public class ConstrainedChatter : ChatInteractor
     {
         return _theme.Length < 30 && _theme.Trim(' ').Count(c => c == ' ') <= 2;
     }
-    [SerializeField] private CrossSceneInfo _crossSceneInfo;
+    [SerializeField] public CrossSceneInfo _crossSceneInfo;
     [SerializeField,
      ValidateInput(nameof(ThemeOk),
          "Consider shortening number of words and total length of them and adding more details in additional chatting, to avoid too many informations passed as system prompts",
@@ -26,7 +26,8 @@ public class ConstrainedChatter : ChatInteractor
     [SerializeField, Range(1, 1000)] private int _asciiArtResolution = 50;
     AnswerHistory.HistoryEntry _last => _history.Get(0);
     public FinalData LastData => ReadHistory(0);
-    public FinalData ReadHistory(int index) => _history.Get(index).data;
+    public FinalData ReadHistory(int index) => ReadHistoryEntry(index).data;
+    public AnswerHistory.HistoryEntry ReadHistoryEntry(int index) => _history.Get(index);
     public AnswerHistory.HistoryEntry Random() => _history.Get(UnityEngine.Random.Range(0, _history.Count));
     //[InlineEditor]
     [SerializeField]

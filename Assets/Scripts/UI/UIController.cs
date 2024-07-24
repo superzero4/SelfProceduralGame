@@ -13,7 +13,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private ConstrainedChatter _chat;
     [SerializeField] private TileController _buildings, _units;
 
-    [SerializeField] private bool _initWithLast = true;
+    [SerializeField,Range(-1,100),InfoBox("-1 for no init")] private int _initWithLast = 0;
 
     [Header("UI references")] [SerializeField]
     private Slider _unitsCount;
@@ -51,15 +51,21 @@ public class UIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (_initWithLast)
-            InitUIUsingHistory();
+        if (_initWithLast>=0)
+        {
+            InitUIUsingHistory(_initWithLast);
+            _next.gameObject.SetActive(true);
+        }
         _chat.newAnswerTreated.AddListener(UpdateUI);
     }
 
     [Button]
     void InitUIUsingHistory(int index = 0)
     {
-        UpdateUI(_chat.ReadHistory(index));
+        var data = _chat.ReadHistoryEntry(index);
+        _inputText.text = data.info;
+        _chat._crossSceneInfo.SetFinalData(data.data);
+        UpdateUI(data.data);
     }
 
     void UpdateUI(FinalData data)
